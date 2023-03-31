@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types';
 import { FormAddContact } from './FormContacts.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/slice';
+import { addContact } from 'redux/operations';
 import { selectContacts } from 'redux/selectors';
-import { nanoid } from 'nanoid';
 
 export const FormContacts = () => {
   const dispatch = useDispatch();
@@ -16,9 +15,8 @@ export const FormContacts = () => {
     const form = e.target;
 
     const contact = {
-      id: nanoid(),
       name: e.target.name.value,
-      number: e.target.number.value,
+      phone: e.target.number.value,
     };
 
     const checkAddContact = contacts
@@ -63,5 +61,5 @@ export const FormContacts = () => {
 };
 
 FormContacts.propTypes = {
-  onSubmitHandler: PropTypes.func.isRequired,
+  submitHandler: PropTypes.func,
 };
