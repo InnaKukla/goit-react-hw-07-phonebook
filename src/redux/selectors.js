@@ -1,4 +1,4 @@
-export const selectContacts = state => state.contacts;
+export const selectContacts = state => state.contacts.items;
 export const selectFilter = state => state.filter;
 
 export const visibleContacts = state => {
@@ -6,7 +6,7 @@ export const visibleContacts = state => {
   const filter = selectFilter(state);
   const normalizedFilter = filter.toLowerCase();
 
-  return contacts.filter(({ name }) =>
-    name.toLowerCase().includes(normalizedFilter)
+  return contacts.filter(contact =>
+    contact.name.toLowerCase().includes(normalizedFilter)
   );
 };
