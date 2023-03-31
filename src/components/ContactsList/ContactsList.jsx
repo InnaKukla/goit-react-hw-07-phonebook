@@ -1,22 +1,23 @@
 import { PhoneContacts } from './ContactsList.styled';
-import { useSelector, useDispatch } from 'react-redux';
-import { deleteContact } from 'redux/slice';
+import { deleteContact } from 'redux/operations';
+import { useDispatch, useSelector } from 'react-redux';
 import { visibleContacts } from 'redux/selectors';
 
 import PropTypes from 'prop-types';
 
 export const ContactsList = () => {
   const visibleContactsList = useSelector(visibleContacts);
+
   const dispatch = useDispatch();
 
   return (
     <PhoneContacts>
-      {visibleContactsList.map(({ id, name, number }) => {
+      {visibleContactsList.map(({ id, name, phone }) => {
         return (
           <li key={id}>
-            {name}: {number}
+            {name}: {phone}
             <button
-              onClick={() => {
+              onClick={event => {
                 dispatch(deleteContact(id));
               }}
             >
